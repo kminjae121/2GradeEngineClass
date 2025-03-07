@@ -5,7 +5,9 @@ public class CharacterMovement : MonoBehaviour
 {
     [SerializeField] private float moveSpeed = 8f, gravity = -9.81f;
     [SerializeField] CharacterController characeterController;
+    [SerializeField] private Transform parent;
 
+    [SerializeField] private float rotationSpeed = 8f;
     public bool IsGround => characeterController.isGrounded;
 
     private Vector3 _velocity;
@@ -46,7 +48,10 @@ public class CharacterMovement : MonoBehaviour
         _velocity *= moveSpeed * Time.fixedDeltaTime;
 
         if (_velocity.magnitude > 0)
-            transform.rotation = Quaternion.LookRotation(_velocity);
+        {
+            Quaternion targetRotation = Quaternion.LookRotation(_velocity);
+            parent.rotation = Quaternion.Lerp(parent.rotation, targetRotation, Time.fixedDeltaTime * rotationSpeed);
+        }
     }
 
     private void Move()
