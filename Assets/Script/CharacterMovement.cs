@@ -1,13 +1,14 @@
-using System;
 using UnityEngine;
 
-public class CharacterMovement : MonoBehaviour
+public class CharacterMovement : MonoBehaviour, IEntityComponent
 {
-    [SerializeField] private float moveSpeed = 8f, gravity = -9.81f;
+    [SerializeField] private float moveSpeed = 4f, gravity = -9.81f;
     [SerializeField] CharacterController characeterController;
-    [SerializeField] private Transform parent;
 
-    [SerializeField] private float rotationSpeed = 8f;
+    [SerializeField] private float rotationSpeed = 4f;
+    private float runSpeed = 8f;
+
+    public bool _isRun;
     public bool IsGround => characeterController.isGrounded;
 
     private Vector3 _velocity;
@@ -18,10 +19,15 @@ public class CharacterMovement : MonoBehaviour
 
     private Vector3 _movementDirection;
 
+    private Entity _entity;
 
     public void SetMoveDiretion(Vector2 moveInput)
     {
         _movementDirection = new Vector3(moveInput.x, 0, moveInput.y).normalized;
+    }
+    public void Initialize(Entity entity)
+    {
+        _entity = entity;
     }
 
     private void FixedUpdate()
@@ -43,14 +49,14 @@ public class CharacterMovement : MonoBehaviour
 
     private void CalculateMovement()
     {
-        _velocity = Quaternion.Euler(0, -45f, 0) * _movementDirection;
+        _velocity = Quaternion.Euler(0, 0f, 0) * _movementDirection;
 
         _velocity *= moveSpeed * Time.fixedDeltaTime;
 
         if (_velocity.magnitude > 0)
         {
             Quaternion targetRotation = Quaternion.LookRotation(_velocity);
-            parent.rotation = Quaternion.Lerp(parent.rotation, targetRotation, Time.fixedDeltaTime * rotationSpeed);
+            _entity.transform.rotation = Quaternion.Lerp(_entity.transform.rotation, targetRotation, Time.fixedDeltaTime * rotationSpeed);
         }
     }
 
@@ -58,4 +64,5 @@ public class CharacterMovement : MonoBehaviour
     {
         characeterController.Move(_velocity);
     }
+
 }

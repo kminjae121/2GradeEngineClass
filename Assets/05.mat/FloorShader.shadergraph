@@ -204,9 +204,23 @@
             },
             "m_InputSlot": {
                 "m_Node": {
-                    "m_Id": "48c30234aea24d3291bb6c5d0e5dccaf"
+                    "m_Id": "6c45c7ecb1494b1083c2c18f8bafdeb3"
                 },
                 "m_SlotId": 1
+            }
+        },
+        {
+            "m_OutputSlot": {
+                "m_Node": {
+                    "m_Id": "99903bc0f89247ef8c757ad8c1e21f95"
+                },
+                "m_SlotId": 0
+            },
+            "m_InputSlot": {
+                "m_Node": {
+                    "m_Id": "3a357a519d72481785bae0adeace7124"
+                },
+                "m_SlotId": 1632544221
             }
         },
         {
@@ -232,7 +246,7 @@
             },
             "m_InputSlot": {
                 "m_Node": {
-                    "m_Id": "6c45c7ecb1494b1083c2c18f8bafdeb3"
+                    "m_Id": "48c30234aea24d3291bb6c5d0e5dccaf"
                 },
                 "m_SlotId": 1
             }
@@ -1548,10 +1562,10 @@
     "m_Guid": {
         "m_GuidSerialized": "89dc3a7b-98d2-42cc-b171-429ed51ce149"
     },
-    "m_Name": "CloudSoeed",
+    "m_Name": "CloudSpeed",
     "m_DefaultRefNameVersion": 1,
-    "m_RefNameGeneratedByDisplayName": "CloudSoeed",
-    "m_DefaultReferenceName": "_CloudSoeed",
+    "m_RefNameGeneratedByDisplayName": "CloudSpeed",
+    "m_DefaultReferenceName": "_CloudSpeed",
     "m_OverrideReferenceName": "",
     "m_GeneratePropertyBlock": true,
     "m_UseCustomSlotLabel": false,
@@ -1565,7 +1579,7 @@
     "m_FloatType": 1,
     "m_RangeValues": {
         "x": 0.0,
-        "y": 1.2000000476837159
+        "y": 3.0
     }
 }
 
@@ -1644,10 +1658,10 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -214.2857208251953,
-            "y": -506.28570556640627,
-            "width": 136.00003051757813,
-            "height": 34.28570556640625
+            "x": -104.57140350341797,
+            "y": -45.14286422729492,
+            "width": 136.57144165039063,
+            "height": 34.28572082519531
         }
     },
     "m_Slots": [
@@ -1988,7 +2002,7 @@
     "m_Type": "UnityEditor.ShaderGraph.Vector1MaterialSlot",
     "m_ObjectId": "d327335d11a44ba89ace4a47f3d991d3",
     "m_Id": 0,
-    "m_DisplayName": "CloudSoeed",
+    "m_DisplayName": "CloudSpeed",
     "m_SlotType": 1,
     "m_Hidden": false,
     "m_ShaderOutputName": "Out",
@@ -2050,12 +2064,12 @@
     "m_Type": "UnityEditor.ShaderGraph.Vector1MaterialSlot",
     "m_ObjectId": "db0374927f354370a666b9b0d15aa4f8",
     "m_Id": -1913307685,
-    "m_DisplayName": "노이즈",
+    "m_DisplayName": "NoiseScale",
     "m_SlotType": 0,
     "m_Hidden": false,
-    "m_ShaderOutputName": "_",
+    "m_ShaderOutputName": "_NoiseScale",
     "m_StageCapability": 3,
-    "m_Value": 20.0,
+    "m_Value": 1.0,
     "m_DefaultValue": 0.0,
     "m_Labels": []
 }
@@ -2117,10 +2131,10 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -138.8571319580078,
-            "y": -165.142822265625,
-            "width": 131.99998474121095,
-            "height": 34.285736083984378
+            "x": -187.4285888671875,
+            "y": -468.57147216796877,
+            "width": 132.00001525878907,
+            "height": 34.28570556640625
         }
     },
     "m_Slots": [

@@ -1,14 +1,15 @@
-using System;
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public class Player : Entity
 {
     [SerializeField] private PlayerInputSO playerInput;
+
     [SerializeField] private CharacterMovement _movement;
 
-
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
+        _movement = GetCompo<CharacterMovement>();
         playerInput.OnMoveChange += HandleMoveChange;
     }
 
@@ -21,4 +22,5 @@ public class Player : MonoBehaviour
     {
         _movement.SetMoveDiretion(vector);
     }
+
 }

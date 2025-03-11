@@ -9,7 +9,7 @@ public class PlayerInputSO : ScriptableObject, Controls.IPlayerActions
 
     public event Action<Vector2> OnMoveChange;
 
-    public event Action OnRoiilingPress, OnAttackPress;
+    public event Action OnRoiilingPress, OnAttackPress, OnJumpPress;
     private void OnEnable()
     {
         if(_control == null)
@@ -41,5 +41,12 @@ public class PlayerInputSO : ScriptableObject, Controls.IPlayerActions
     {
         if (context.performed)
             OnRoiilingPress?.Invoke();
+    }
+
+    public void OnJump(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+            OnJumpPress?.Invoke();
+
     }
 }
