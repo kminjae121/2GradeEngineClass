@@ -1,26 +1,37 @@
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class Player : Entity
 {
-    [SerializeField] private PlayerInputSO playerInput;
+    [field: SerializeField] public PlayerInputSO PlayerInput { get; private set; }
 
-    [SerializeField] private CharacterMovement _movement;
+    [SerializeField] private StateDataSO[] stateDataList;
+
+    private EntityStateMachine _stateMachine;
+
+    
 
     protected override void Awake()
     {
         base.Awake();
-        _movement = GetCompo<CharacterMovement>();
-        playerInput.OnMoveChange += HandleMoveChange;
+        _stateMachine = new EntityStateMachine(this, stateDataList);
+    }
+    private void Start()
+    {
+        _stateMachine.ChangeState("IDLE");
     }
 
-    private void OnDestroy()
+    private void Update()
     {
-        playerInput.OnMoveChange -= HandleMoveChange;
+        _stateMachine.UpdateStateMachine();
     }
 
-    private void HandleMoveChange(Vector2 vector)
+    private void FixedUpdate()
     {
-        _movement.SetMoveDiretion(vector);
+        _stateMachine.FixedUpdateStateMachine();
     }
+
+    public void ChangeState(string NewStatename) => _stateMachine.ChangeState(NewStatename);
+
 
 }

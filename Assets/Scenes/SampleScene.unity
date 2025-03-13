@@ -206,8 +206,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330585543}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.39547455, y: 0.000000020038243, z: -0.000000008627995, w: 0.91847694}
-  m_LocalPosition: {x: -0.00000035982026, y: 8.717622, z: -8.246397}
+  m_LocalRotation: {x: 0.36536977, y: -0.35148612, z: 0.1513411, w: 0.8485626}
+  m_LocalPosition: {x: 5.831098, y: 8.7176, z: -5.8310976}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -481,8 +481,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 547067590}
-  - component: {fileID: 547067591}
   - component: {fileID: 547067593}
+  - component: {fileID: 547067591}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -519,8 +519,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f8ae45bb4a66e348876dd51eeffca9c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerInput: {fileID: 11400000, guid: fae8a086938fc314fa3e372611f61a50, type: 2}
+  <PlayerInput>k__BackingField: {fileID: 11400000, guid: fae8a086938fc314fa3e372611f61a50, type: 2}
   _movement: {fileID: 1995635546}
+  stateDataList:
+  - {fileID: 11400000, guid: 1b8bc0f2a98f3304d9ba77d0ab42984b, type: 2}
+  - {fileID: 11400000, guid: 9ac6e93e04148be4c82407da9820fd54, type: 2}
 --- !u!143 &547067593
 CharacterController:
   m_ObjectHideFlags: 0
@@ -651,14 +654,44 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 86a7286d605ec8a4fb9482b2b19dd4d2, type: 2}
+    - target: {fileID: 5866666021909216657, guid: c8896d83481fca741b2a75c5b0715041, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: f5bab75c9f07199418b217ab7abe14ef, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: c8896d83481fca741b2a75c5b0715041, type: 3}
+      insertIndex: 1
+      addedObject: {fileID: 845518303}
   m_SourcePrefab: {fileID: 100100000, guid: c8896d83481fca741b2a75c5b0715041, type: 3}
 --- !u!4 &845518301 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: c8896d83481fca741b2a75c5b0715041, type: 3}
+  m_PrefabInstance: {fileID: 845518300}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &845518302 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: c8896d83481fca741b2a75c5b0715041, type: 3}
+  m_PrefabInstance: {fileID: 845518300}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &845518303
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 845518302}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0454bad1fc08240489da8e2e754f61de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 845518304}
+--- !u!95 &845518304 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: c8896d83481fca741b2a75c5b0715041, type: 3}
   m_PrefabInstance: {fileID: 845518300}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &884554177
@@ -730,13 +763,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 884554177}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.39547452, y: 0.000000020038241, z: -0.000000008627994, w: 0.918477}
-  m_LocalPosition: {x: -0.00000035982026, y: 8.717622, z: -8.246397}
+  m_LocalRotation: {x: 0.36536977, y: -0.35148612, z: 0.1513411, w: 0.8485626}
+  m_LocalPosition: {x: 5.831098, y: 8.7176, z: -5.8310976}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 46.591, y: -45, z: 0}
 --- !u!114 &884554182
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -837,10 +870,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36eefc9fc9c2ca746953bcfd0f031fac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myClass:
-    age: 2147483647
-    name: "\uC5C4\uC81C\uC720"
-  target: age
 --- !u!4 &968206619
 Transform:
   m_ObjectHideFlags: 0
