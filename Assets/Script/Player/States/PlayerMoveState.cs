@@ -1,16 +1,27 @@
 using System;
 using UnityEngine;
 
-public class PlayerMoveState :PlayerState
+public class PlayerMoveState : PlayerCanAttackState
 {
+    private CharacterMovement _movement;
     public PlayerMoveState(Entity entity, int animationHash) : base(entity, animationHash)
     {
+        _movement = entity.GetComponent<CharacterMovement>();
+
     }
 
     public override void Enter()
     {
         base.Enter();
-        _player.PlayerInput.OnMoveChange += HandleMovementChange;
+    }
+
+    public override void Update()
+    {
+        base.Update();
+        Vector2 movementKey = _player.PlayerInput.MovementKey;
+        _movement.SetMoveDiretion(movementKey);
+        if (movementKey.magnitude < _inputThreshold)
+            _player.ChangeState("IDLE");
     }
     public override void FixedUpdate()
     {
@@ -18,14 +29,8 @@ public class PlayerMoveState :PlayerState
     }
     public override void Exit()
     {
-        _player.PlayerInput.OnMoveChange -= HandleMovementChange;
 
         base.Exit();
     }
 
-    private void HandleMovementChange(Vector2 movementKey)
-    {
-        if (movementKey.magnitude < _inputThreshold)
-            _player.ChangeState("IDLE");
-    }
 }

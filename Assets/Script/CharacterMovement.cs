@@ -6,6 +6,9 @@ public class CharacterMovement : MonoBehaviour, IEntityComponent
     [SerializeField] CharacterController characeterController;
 
     [SerializeField] private float rotationSpeed = 4f;
+
+    public bool CanManualMovement { get; set; } = true;
+
     private float runSpeed = 8f;
 
     public bool _isRun;
@@ -20,6 +23,7 @@ public class CharacterMovement : MonoBehaviour, IEntityComponent
     private Vector3 _movementDirection;
 
     private Entity _entity;
+    private Vector2 _automMovement;
 
     public void SetMoveDiretion(Vector2 moveInput)
     {
@@ -49,10 +53,16 @@ public class CharacterMovement : MonoBehaviour, IEntityComponent
 
     private void CalculateMovement()
     {
-        _velocity = Quaternion.Euler(0, 0f, 0) * _movementDirection;
+        if (CanManualMovement)
+        {
+            _velocity = Quaternion.Euler(0, 0f, 0) * _movementDirection;
 
-        _velocity *= moveSpeed * Time.fixedDeltaTime;
-
+            _velocity *= moveSpeed * Time.fixedDeltaTime;
+        }
+        else
+        {
+            _velocity = _automMovement * Time.fixedDeltaTime;
+        }
         if (_velocity.magnitude > 0)
         {
             Quaternion targetRotation = Quaternion.LookRotation(_velocity);
@@ -64,5 +74,10 @@ public class CharacterMovement : MonoBehaviour, IEntityComponent
     {
         characeterController.Move(_velocity);
     }
+    public void StopImmediately()
+    {
+        _movementDirection = Vector3.zero;
+    }
 
+    public void SetAutoMovement(Vector3 autoMovement) => _automMovement = autoMovement;
 }

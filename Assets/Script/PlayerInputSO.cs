@@ -7,7 +7,12 @@ public class PlayerInputSO : ScriptableObject, Controls.IPlayerActions
 {
     private Controls _control;
 
-    public event Action<Vector2> OnMoveChange;
+    [SerializeField] private LayerMask _whatIsGround;
+    public Vector2 MovementKey { get; private set; }
+
+    private Vector3 _WorldPosition;
+                
+    private Vector2 _screenPosition;
 
     public event Action OnRoiilingPress, OnAttackPress, OnJumpPress;
     private void OnEnable()
@@ -34,7 +39,7 @@ public class PlayerInputSO : ScriptableObject, Controls.IPlayerActions
     {
         Vector2 movementKey = context.ReadValue<Vector2>();
 
-        OnMoveChange?.Invoke(movementKey);  
+        MovementKey = movementKey; 
     }
 
     public void OnRolling(InputAction.CallbackContext context)
@@ -48,5 +53,25 @@ public class PlayerInputSO : ScriptableObject, Controls.IPlayerActions
         if (context.performed)
             OnJumpPress?.Invoke();
 
+    }
+
+    public Vector3 GetWorldPosition()
+    {
+        Camera mainCam = Camera.main;// Unity 2022∫Œ≈Õ ≥ª∫Œ ƒ≥ΩÃ¿Ã µ 
+
+        Debug.Assert(mainCam != null, "no MainCam is There");
+
+        Ray cameraRay = mainCam.ScreenPointToRay(_screenPosition);
+        if (Physics.Raycast(cameraRay, out RaycastHit hit, mainCam.farClipPlane, _whatIsGround))
+        {
+            _WorldPosition = hit.point;
+        }
+
+        return _WorldPosition;
+    }
+
+    public void OnPointer(InputAction.CallbackContext context)
+    {
+        _screenPosition = context.ReadValue<Vector2>();   
     }
 }
