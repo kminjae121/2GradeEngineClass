@@ -12,6 +12,6 @@ public class StateDataSO : ScriptableObject
 
     private void OnValidate()
     {
-        animationHash = Animator.StringToHash(animParamName);
+        animationHash = Animator.StringToHash(animParamName);    
     }
 }

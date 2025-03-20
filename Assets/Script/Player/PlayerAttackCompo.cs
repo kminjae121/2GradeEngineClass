@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class PlayerAttackCompo : MonoBehaviour, IEntityComponent
 {
-    [Header("Attack Datas"), SerializeField] private AttackDataSO[] attackDataList;
     [SerializeField] private float comboWindow;
     private Entity _entity;
     private EntityAnimator _entityAnimator;
@@ -13,7 +12,7 @@ public class PlayerAttackCompo : MonoBehaviour, IEntityComponent
     private float _attackSpeed = 1f;
     private float _lastAttackTime;
 
-    public int COMBO_COUNTER { get; set; } = 0;
+    public int ComboCounter { get; set; } = 0;
 
     public float AttackSpeed
     {
@@ -34,25 +33,18 @@ public class PlayerAttackCompo : MonoBehaviour, IEntityComponent
 
     public void Attack()
     {
-        bool comboCounterOver = COMBO_COUNTER > 2;
+        bool comboCounterOver = ComboCounter > 2;
         bool comboWindowExhaust = Time.time >= _lastAttackTime + comboWindow;
         if (comboCounterOver || comboWindowExhaust)
         {
-            COMBO_COUNTER = 0;
+            ComboCounter = 0;
         }
-        _entityAnimator.SetParam(_comboCounterHash, COMBO_COUNTER);
+        _entityAnimator.SetParam(_comboCounterHash, ComboCounter);
     }
 
     public void EndAttack()
     {
-        COMBO_COUNTER++;
+        ComboCounter++;
         _lastAttackTime = Time.time;
     }
-
-    public AttackDataSO GetCurrentAttackData()
-    {
-        Debug.Assert(attackDataList.Length > COMBO_COUNTER, "WW");
-        return attackDataList[0];
-    }
-
 }
